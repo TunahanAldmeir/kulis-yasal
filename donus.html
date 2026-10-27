@@ -1,0 +1,13 @@
+<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TikTok bağlantısı — Kulis Fabrikası</title><style>body{font:16px/1.6 system-ui,sans-serif;max-width:760px;margin:40px auto;padding:0 18px;color:#1d1d24}h1{font-size:28px}h2{font-size:19px;margin-top:26px}.dil{border-top:1px solid #ddd;margin-top:36px;padding-top:12px}header{display:flex;align-items:center;gap:12px}header img{width:48px;height:48px;border-radius:50%}a{color:#c2410c}</style></head><body>
+<header><img src="logo.png" alt=""><h1>TikTok bağlantısı</h1></header>
+<p id="durum">Yetki kodu okunuyor…</p>
+<p><code id="kod" style="word-break:break-all;font-size:15px;background:#f3f3f5;padding:8px;display:block"></code></p>
+<button id="kopyala" style="display:none;padding:10px 16px;font-size:16px">Kodu kopyala</button>
+<p style="color:#666">Bu kodu Kulis Fabrikası kurulumuna yapıştırın. Kod birkaç dakika geçerlidir; sayfa hiçbir veriyi kaydetmez.<br>Paste this code into the Kulis Fabrikası setup. It expires in a few minutes; this page stores nothing.</p>
+<script>
+const q=new URLSearchParams(location.search), kod=q.get('code'), hata=q.get('error');
+const d=document.getElementById('durum'), k=document.getElementById('kod'), b=document.getElementById('kopyala');
+if(kod){d.textContent='Bağlantı onaylandı. Yetki kodu (state: '+(q.get('state')||'-')+'):';k.textContent=kod;b.style.display='inline-block';b.onclick=()=>navigator.clipboard.writeText(kod).then(()=>b.textContent='Kopyalandı');}
+else{d.textContent='Kod yok'+(hata?' — hata: '+hata+' '+(q.get('error_description')||''):'');}
+</script>
+</body></html>
