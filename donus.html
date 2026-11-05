@@ -6,6 +6,8 @@
 <p style="color:#666">Bu kodu Kulis Fabrikası kurulumuna yapıştırın. Kod birkaç dakika geçerlidir; sayfa hiçbir veriyi kaydetmez.<br>Paste this code into the Kulis Fabrikası setup. It expires in a few minutes; this page stores nothing.</p>
 <script>
 const q=new URLSearchParams(location.search), kod=q.get('code'), hata=q.get('error');
+// Kulis Fabrikası panel (localhost) sign-in: hand the result back to the panel
+if((q.get('state')||'').startsWith('yerel')) location.replace('http://localhost:5199/callback'+location.search);
 const d=document.getElementById('durum'), k=document.getElementById('kod'), b=document.getElementById('kopyala');
 if(kod){d.textContent='Bağlantı onaylandı. Yetki kodu (state: '+(q.get('state')||'-')+'):';k.textContent=kod;b.style.display='inline-block';b.onclick=()=>navigator.clipboard.writeText(kod).then(()=>b.textContent='Kopyalandı');}
 else{d.textContent='Kod yok'+(hata?' — hata: '+hata+' '+(q.get('error_description')||''):'');}
